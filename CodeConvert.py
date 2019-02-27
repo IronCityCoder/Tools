@@ -3,7 +3,7 @@
 Encoder/Decoder for on the fly command line conversions.
 
 Usage: ./CodeConvert -[input] -[output] -[value]
-Example: ./CodeConvert -hex -dec -"14AC"
+Example: ./CodeConvert -hex -dec "14AC"
 
 '''
 import sys
@@ -19,7 +19,7 @@ options = ["hex", "dec", "bin"]
 args = sys.argv
 inputArg = args[1][1:] #Strip out the "-"
 outputArg = args[2][1:]
-value = args[3][1:]
+value = args[3]
 
 if inputArg not in options:
  print("Input form currently not supported. Please try again with one of the following:")
@@ -30,7 +30,7 @@ elif outputArg not in options:
  print(x for x in options)
  sys.exit()
 
-funcCall = "{}to{}({})".format(inputArg, outputArg, value) 
+funcCall = "{}to{}(\"{}\")".format(inputArg.title(), outputArg.title(), value) 
 print(funcCall)
 #callFunction(funcCall)
 
